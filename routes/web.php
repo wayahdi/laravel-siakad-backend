@@ -13,6 +13,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('pages.app.dashboard-siakad', ['type_menu' => '']);
+// });
+
+// Route::get('/login', function () {
+//     return view('pages.auth.auth-login', ['type_menu' => '']);
+// });
+
+// Route::get('/register', function () {
+//     return view('pages.auth.auth-register', ['type_menu' => '']);
+// });
+
 Route::get('/', function () {
-    return view('pages.blank-page', ['type_menu' => '']);
+    return view('pages.auth.auth-login');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('home', function () {
+        return view('pages.app.dashboard-siakad', ['type_menu' => '']);
+    })->name('home');
 });
